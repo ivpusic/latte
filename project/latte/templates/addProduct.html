@@ -1,0 +1,42 @@
+{% extends "site_base.html" %}
+
+{% load i18n %}
+{% load bootstrap_tags %}
+
+{% block head_title %}{% trans "Welcome" %}{% endblock %}
+
+{% block body_class %}home{% endblock %}
+
+{% load staticfiles %}
+
+{% block extra_script%}
+
+{% endblock %}
+
+{% block body %}
+
+{% if user.is_authenticated %}
+
+<div id="sub_nav" class="navbar">
+    <div class="navbar-inner">
+	{% include "menu.html" %}
+	<div class="span12 columns" >
+
+	    <h3>New product</h3>
+	    <form method="post" id="addContactForm" enctype="multipart/form-data" action="">
+		{% csrf_token %}
+
+		<table class="table">
+		    {{ createProduct_form.as_table }}
+		</table>
+		<button type="submit" class="btn btn-primary">
+		    <i class="icon-ok icon-white"></i> Save
+		</button>
+	    </form>
+	</div>
+
+    </div>
+</div>
+
+{% endif %}
+{% endblock %}

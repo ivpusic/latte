@@ -1,0 +1,29 @@
+body{
+    min-height:800px;
+    height: 800px;
+}
+
+#container{
+     min-height:650px;
+     height:auto !important;
+     height:700px;
+}
+
+#imageContainer img {
+    height: 200px;
+}
+
+#imageContainer i {
+    cursor: hand;
+    cursor: pointer;
+}
+
+.autoSizeIm {
+    width: 100px;
+    height: auto;
+}
+
+.manualSizeIm {
+    width: 1200px;
+    height: 700px;
+}

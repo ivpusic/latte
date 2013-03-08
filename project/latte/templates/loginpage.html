@@ -1,0 +1,66 @@
+{% extends "site_base.html" %}
+
+{% load i18n %}
+{% load bootstrap_tags %}
+
+{% block head_title %}{% trans "Welcome" %}{% endblock %}
+
+{% block body_class %}login{% endblock %}
+
+
+{% block body %}
+
+<div class="row">
+    
+    <div class="pull-right span6">
+	
+	<form method="POST" action="/account/login/" autocapitalize="off" class="form-inline">
+	    {% csrf_token %}
+	    <span>{{ login_form.username }}{{ login_form.password }}</span>
+	    
+	    {% if redirect_field_value %}
+	    <input type="hidden" name="{{ redirect_field_name }}" value="{{ redirect_field_value }}" />
+	    {% endif %}    
+	    <button type="submit" class="btn btn-primary">{% trans "Log in" %}</button>
+	    <p>{{login_form.remember }}<small>{{ login_form.remember.label}}</small></p>
+	</form>
+
+    </div>
+</div>
+
+<div class="row hero-unit">
+    <div class="span5">
+	<img src="http://placehold.it/500x300" />
+    </div>
+    <div class="span5">
+	{% blocktrans %}
+	<b>Latte</b> is system for diferent kind of ordering products. We connect your favorite hangout places with their products. Rate your favorite drink, meal or hangout place. Check whats favorite drink, meal or hangout place of your friends or acquaintances.
+	{% endblocktrans %}
+	
+	
+	<hr />
+	<h5>Join now. It's free.</h5>
+	<form method="POST" action="/account/signup/" autocapitalize="off" class="">
+	    {% csrf_token %}
+	    {{ signup_form.username }}{{ signup_form.password }} 
+	    
+	    <div class="control-group">              
+		<div class="controls">
+		    <div class="input-prepend">
+			<span class="add-on"><i class="icon-envelope"></i></span>{{ signup_form.email }}
+			<button type="submit" class="btn btn-success">{% trans "Sign Up" %}</button>
+		    </div>
+		</div>
+		{% if redirect_field_value %}
+		<input type="hidden" name="{{ redirect_field_name }}" value="{{ redirect_field_value }}" />
+		{% endif %}   
+	    </div>
+	</form>
+	
+    </div>
+    
+</div>
+
+
+
+{% endblock %}

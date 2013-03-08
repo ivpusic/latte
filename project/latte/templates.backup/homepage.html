@@ -1,0 +1,39 @@
+{% extends "banner_base.html" %}
+
+{% load i18n %}
+{% load account_tags %}
+
+{% block head_title %}{% trans "Welcome" %}{% endblock %}
+
+{% block body_class %}home{% endblock %}
+
+{% block banner %}
+    <h1>{% trans "Welcome to Latte" %}</h1>
+    <hr />
+    <p>
+        {% blocktrans %}
+        <b>Latte</b> is system for difrent kind of ordering product. We connect your favorite hangout places with their products. Rate your favorite drink, meal or hangout place. Check whats favorite drink, meal or hangout place of your friends or acquaintances.
+	{% endblocktrans %}
+    </p>
+    
+    <p>
+      {% if request.user.is_authenticated %}
+        
+      {% else %}
+      
+      <span>
+      <a href="{% url account_login %}"><strong>Log in</strong></a>
+	{% if ACCOUNT_OPEN_SIGNUP %}
+	<small>or</small>
+	<a href="{% url account_signup %}"><strong>Sign up</strong></a>
+      
+	{% endif %}
+      </span>
+      {% endif %}
+     
+    </p>
+    
+    {% if user.is_authenticated %}
+        
+    {% endif %}
+{% endblock %}

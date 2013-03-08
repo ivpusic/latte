@@ -1,0 +1,33 @@
+{% load account_tags %}
+
+{% block nav%}
+     
+{% endblock%}
+<ul class="nav pull-right">
+    {% if request.user.is_authenticated %}
+        <li  class="dropdown">
+            <a  href="#" data-toggle="dropdown">
+                <i  id="user_tooltip" class="icon-user"> </i>
+                {% user_display request.user %}
+                <b class="caret"></b>
+            </a>
+            <ul class="dropdown-menu">
+                <li><a href="{% url account_settings %}"><i class="icon-user"></i> Settings</a></li>
+                <li  class="divider"></li>
+                <li><a href="{% url account_logout %}"><i class="icon-off"></i> Log out</a></li>
+            </ul>
+        </li>
+
+    {% else %}
+        <li class="dropdown">
+	  <a href="#" data-toggle="dropdown">
+	    Language
+	    <b class="caret"></b>
+	  </a>
+	  <ul class="dropdown-menu">
+	    <li><a href="#">Croatian</a></li>
+	    <li><a href="#">English</a></li>
+	  </ul>
+	</li>
+    {% endif %}
+</ul>

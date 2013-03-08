@@ -1,0 +1,14 @@
+MANIFEST.in
+UNLICENSE
+distribute_setup.py
+setup.cfg
+pip-egg-info/URLObject.egg-info/PKG-INFO
+pip-egg-info/URLObject.egg-info/SOURCES.txt
+pip-egg-info/URLObject.egg-info/dependency_links.txt
+pip-egg-info/URLObject.egg-info/top_level.txt
+urlobject/__init__.py
+urlobject/netloc.py
+urlobject/path.py
+urlobject/ports.py
+urlobject/query_string.py
+urlobject/urlobject.py

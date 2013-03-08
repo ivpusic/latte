@@ -1,0 +1,60 @@
+{% extends "site_base.html" %}
+
+{% load i18n %}
+{% load bootstrap_tags %}
+
+{% block head_title %}{% trans "Welcome" %}{% endblock %}
+
+{% block body_class %}home{% endblock %}
+
+{% load staticfiles %}
+
+{% block extra_script%}
+<script src="{% static "js/homepage.js" %}"></script>
+{% endblock %}
+
+{% block body %}
+
+{% if user.is_authenticated %}
+
+<div id="sub_nav" class="navbar">
+    <div class="navbar-inner">
+	{% include "menu.html" %}
+
+	<div class="span12 columns" >
+
+	    <div id="myTabContent" class="tab-content">
+		<div class="tab-pane fade active in" id="products" >
+		    <br/>
+		    <button class="btn btn-primary" id="addButton" type="button">Add new product</button>
+		    <br/><br/>
+		    <table class="table">
+			<th>Name</th>
+			<th>Price (kn)</th>
+			<th>Actions</th>
+			{% for product in restProducts %}
+			<tr>
+			    <td>
+				{{ product.product.name }}
+			    </td>
+
+			    <td>{{ product.price }}</td>
+			    
+			    <td width="150px">  
+				<button class="btn btn-small btnEdit" id="edit|{{product.product.id}}" type="button">Edit/Details</button>  
+				<button class="btn btn-small btnDelete" id="delete|{{product.product.id}}" type="button">Delete</button>
+			    </td>
+			</tr>
+			{% endfor %}
+		    </table>
+
+		</div>
+
+
+	    </div>
+	</div>
+    </div>
+</div>
+
+	{% endif %}
+	{% endblock %}
