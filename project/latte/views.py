@@ -8,10 +8,11 @@ from .forms import CreateProductForm, RestaurantInfoForm
 from django.http import HttpResponse
 from latte import settings
 
+
+def getRestaurant(request):
 """
 Method for getting restaurant for logged user
 """
-def getRestaurant(request):
     loggedUser = request.user
     return Restaurant.objects.get(user = loggedUser)
 
@@ -176,11 +177,11 @@ class RestaurantInfoView(TemplateView):
             ctx['form'] = RestaurantInfoForm(request.POST)
             return self.render_to_response(ctx)
 
+
+class DeletePictureView(View):
 """
 View for deleting pictures -> ajax POST request
-"""
-class DeletePictureView(View):
-    
+"""    
     def post(self, request, pk, *args, **kwargs):
         if(request.user.is_authenticated()):
             ProductPicture.objects.get(id=pk).delete()
@@ -188,11 +189,11 @@ class DeletePictureView(View):
         else:
             return HttpResponse("You are not authenticated")
 
+
+class DeleteProductView(View):
 """
 View for deleting some product for some restaurant 
 """
-class DeleteProductView(View):
-
     def post(self, request, pk, *args, **kwargs):
         if(request.user.is_authenticated()):
             r = getRestaurant(request)
